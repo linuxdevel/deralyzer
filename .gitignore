@@ -4,3 +4,4 @@ build/
 *.der
 *.key
 *.csr
+_codeql_detected_source_root
