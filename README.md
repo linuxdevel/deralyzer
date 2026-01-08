@@ -19,11 +19,23 @@
 
 ## Build
 
-You can compile `deralyzer` using `g++` directly:
+You can compile `deralyzer` using the provided Makefile:
+
+```bash
+make
+```
+
+Or compile directly with `g++`:
 
 ```bash
 g++ -o deralyzer src/main.cpp -lssl -lcrypto
 ```
+
+### Additional Makefile Targets
+
+- `make test` - Build and run basic tests with generated RSA keys
+- `make install` - Install the binary and config file (prompts for installation prefix, default: `/usr/local`)
+- `make clean` - Remove build artifacts and the compiled binary
 
 ## Usage
 
@@ -47,12 +59,21 @@ g++ -o deralyzer src/main.cpp -lssl -lcrypto
 The tool looks for a `deralyzer.cfg` file in the same directory as the executable. You can use this file to define custom OID descriptions or add warnings for specific OIDs (e.g., deprecated algorithms).
 
 **Format:**
-```ini
-OID = 1.2.840.113549.1.1.1
-Description = RSA Encryption
-# Optional: Add 'Warning' to flag this OID in red
-# Warning = True
+```json
+{
+  "1.2.840.113549.1.1.1": {
+    "description": "RSA Encryption"
+  },
+  "1.2.840.113549.1.1.4": {
+    "description": "MD5 with RSA Encryption",
+    "warning": true
+  }
+}
 ```
+
+The config file is in JSON format. Each OID is a key with an object containing:
+- `description` - Human-readable name for the OID
+- `warning` (optional) - Set to `true` to flag this OID in red (useful for deprecated algorithms)
 
 ## Examples
 
