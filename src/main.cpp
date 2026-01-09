@@ -643,7 +643,7 @@ int main(int argc, char* argv[]) {
             if (format == "text") config.outputFormat = OUTPUT_TEXT;
             else if (format == "hex") config.outputFormat = OUTPUT_HEX;
             else if (format == "tree") config.outputFormat = OUTPUT_TREE;
-        } else if (arg == "-v" || arg == "--v" || arg == "--verbose" || arg == "-verbose") {
+        } else if (arg == "-v" || arg == "--verbose") {
             config.verbose = true;
         } else if (arg == "--color" || arg == "-color") {
             config.useColor = true;
