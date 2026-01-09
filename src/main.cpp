@@ -88,6 +88,7 @@ struct AnalysisReport {
 
 void printUsage(const char* progName) {
     std::cerr << "Usage: " << progName << " -in <file> [-inform der|pem] [-outform text|hex|tree] [-v] [--color] [--full-output]" << std::endl;
+    std::cerr << "       (All options support both single '-' and double '--' dashes)" << std::endl;
 }
 
 // Helper to convert PEM to DER
@@ -631,22 +632,22 @@ int main(int argc, char* argv[]) {
 
     for (int i = 1; i < argc; i++) {
         std::string arg = argv[i];
-        if (arg == "-in" && i + 1 < argc) {
+        if ((arg == "-in" || arg == "--in") && i + 1 < argc) {
             config.inputFile = argv[++i];
-        } else if (arg == "-inform" && i + 1 < argc) {
+        } else if ((arg == "-inform" || arg == "--inform") && i + 1 < argc) {
             std::string format = argv[++i];
             if (format == "der") config.inputFormat = FORMAT_DER;
             else if (format == "pem") config.inputFormat = FORMAT_PEM;
-        } else if (arg == "-outform" && i + 1 < argc) {
+        } else if ((arg == "-outform" || arg == "--outform") && i + 1 < argc) {
             std::string format = argv[++i];
             if (format == "text") config.outputFormat = OUTPUT_TEXT;
             else if (format == "hex") config.outputFormat = OUTPUT_HEX;
             else if (format == "tree") config.outputFormat = OUTPUT_TREE;
-        } else if (arg == "-v") {
+        } else if (arg == "-v" || arg == "--verbose") {
             config.verbose = true;
-        } else if (arg == "--color") {
+        } else if (arg == "--color" || arg == "-color") {
             config.useColor = true;
-        } else if (arg == "--full-output") {
+        } else if (arg == "--full-output" || arg == "-full-output") {
             config.fullOutput = true;
         } else {
             printUsage(argv[0]);
