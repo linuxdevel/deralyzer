@@ -33,8 +33,8 @@ g++ -o deralyzer src/main.cpp -lssl -lcrypto
 
 ### Additional Makefile Targets
 
-- `make test` - Build and run basic tests with generated RSA keys
-- `make install` - Install the binary and config file (prompts for installation prefix, default: `/usr/local`)
+- `make test`  - Build and run basic tests with generated RSA keys
+- `make install`  - Install the binary and config file (prompts for installation prefix, default: `/usr/local`)
 - `make clean` - Remove build artifacts and the compiled binary
 
 ## Usage
@@ -97,3 +97,6 @@ The config file is in JSON format. Each OID is a key with an object containing:
 
 **Arne Brune Olsen**
 
+## Contributions
+
+Contributions are welcome! Please make a pull request or open an issue if you have ideas for improvements. Your help in making this project better is greatly appreciated.
